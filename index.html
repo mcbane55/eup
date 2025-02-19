@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ladezeit-Rechner</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: white;
+        }
+
+        h1, h2, .output-text {
+            font-family: "Arial", sans-serif;
+            color: white;
+        }
+
+        .menu-button, .back-button {
+            display: block;
+            width: 80%;
+            padding: 25px;
+            font-size: 33px;
+            margin: 10px auto;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .menu-button:hover, .back-button:hover {
+            background-color: #1e7e34;
+        }
+
+        .calc-button {
+            padding: 10px;
+            font-size: 28px;
+            margin: 5px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .calc-button:hover {
+            background-color: #1e7e34;
+        }
+
+        .output-text {
+            font-size: 36px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+            color: white;
+        }
+
+        .container {
+            text-align: center;
+        }
+    </style>
+    <script>
+        function showCalculator(type) {
+            document.getElementById("menu").style.display = "none";
+            document.getElementById("sixteenth").style.display = (type === 'sixteenth') ? "block" : "none";
+            document.getElementById("eighth").style.display = (type === 'eighth') ? "block" : "none";
+            document.getElementById("quarter").style.display = (type === 'quarter') ? "block" : "none";
+        }
+
+        function calculateChargingTime(parts, factor, outputId) {
+            let totalMinutes = parts * factor;
+            let hours = Math.floor(totalMinutes / 60);
+            let minutes = totalMinutes % 60;
+            document.getElementById(outputId).innerText = `${hours} Std. ${minutes} Min.`;
+        }
+
+        function goBack() {
+            document.getElementById("menu").style.display = "block";
+            document.getElementById("sixteenth").style.display = "none";
+            document.getElementById("eighth").style.display = "none";
+            document.getElementById("quarter").style.display = "none";
+        }
+
+        function generateButtons(containerId, count, factor, outputId, denominator) {
+            let container = document.getElementById(containerId);
+            container.style.display = "flex";
+            container.style.flexWrap = "wrap";
+            container.style.justifyContent = "center";
+            for (let i = 1; i <= count; i++) {
+                let button = document.createElement("button");
+                button.className = "calc-button";
+                button.innerText = `${i}/${denominator}`;
+                button.onclick = function () {
+                    calculateChargingTime(i, factor, outputId);
+                };
+                container.appendChild(button);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            generateButtons("sixteenth-buttons", 16, 17, "output_sixteenth", 16);
+            generateButtons("eighth-buttons", 8, 34, "output_eighth", 8);
+            generateButtons("quarter-buttons", 4, 68, "output_quarter", 4);
+        });
+    </script>
+</head>
+<body>
+    <div id="menu" class="container">
+        <h1>Wähle die Ladeoption</h1>
+        <button class="menu-button" onclick="showCalculator('sixteenth')">1/16</button>
+        <button class="menu-button" onclick="showCalculator('eighth')">1/8</button>
+        <button class="menu-button" onclick="showCalculator('quarter')">1/4</button>
+    </div>
+
+    <div id="sixteenth" class="container" style="display: none;">
+        <h1>Ladezeit mit Sechzehntel</h1>
+        <div id="sixteenth-buttons"></div>
+        <p id="output_sixteenth" class="output-text"></p>
+        <button class="back-button" onclick="goBack()">Zurück zur Auswahl</button>
+    </div>
+
+    <div id="eighth" class="container" style="display: none;">
+        <h1>Ladezeit mit Achtel</h1>
+        <div id="eighth-buttons"></div>
+        <p id="output_eighth" class="output-text"></p>
+        <button class="back-button" onclick="goBack()">Zurück zur Auswahl</button>
+    </div>
+
+    <div id="quarter" class="container" style="display: none;">
+        <h1>Ladezeit mit Viertel</h1>
+        <div id="quarter-buttons"></div>
+        <p id="output_quarter" class="output-text"></p>
+        <button class="back-button" onclick="goBack()">Zurück zur Auswahl</button>
+    </div>
+</body>
+</html>
