@@ -10,8 +10,23 @@
             color: white;
         }
 
-        h1, h2, .output-text {
+        h1 {
+            font-size: 100px;
             font-family: "Arial", sans-serif;
+            color: white;
+        }
+
+        h2 {
+            font-size: 32px;
+            font-family: "Arial", sans-serif;
+            color: white;
+        }
+
+        .output-text {
+            font-size: 100px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
             color: white;
         }
 
@@ -32,8 +47,9 @@
         }
 
         .calc-button {
-            padding: 10px;
-            font-size: 80px;
+            width: 300px;
+            padding: 25px;
+            font-size: 100px;
             margin: 5px;
             background-color: #28a745;
             color: white;
@@ -43,14 +59,6 @@
         }
         .calc-button:hover {
             background-color: #1e7e34;
-        }
-
-        .output-text {
-            font-size: 100px;
-            font-weight: bold;
-            text-align: center;
-            margin-top: 20px;
-            color: white;
         }
 
         .container {
@@ -114,21 +122,21 @@
         <h1>Ladezeit mit Sechzehntel</h1>
         <div id="sixteenth-buttons"></div>
         <p id="output_sixteenth" class="output-text"></p>
-        <button class="back-button" onclick="goBack()">Zurück</button>
+        <button class="back-button" onclick="goBack()">Zurück zur Auswahl</button>
     </div>
 
     <div id="eighth" class="container" style="display: none;">
         <h1>Ladezeit mit Achtel</h1>
         <div id="eighth-buttons"></div>
         <p id="output_eighth" class="output-text"></p>
-        <button class="back-button" onclick="goBack()">Zurück</button>
+        <button class="back-button" onclick="goBack()">Zurück zur Auswahl</button>
     </div>
 
     <div id="quarter" class="container" style="display: none;">
         <h1>Ladezeit mit Viertel</h1>
         <div id="quarter-buttons"></div>
         <p id="output_quarter" class="output-text"></p>
-        <button class="back-button" onclick="goBack()">Zurück</button>
+        <button class="back-button" onclick="goBack()">Zurück zur Auswahl</button>
     </div>
 </body>
 </html>
